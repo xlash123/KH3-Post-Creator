@@ -1,4 +1,4 @@
-const textFormat = {left: 50, top: 720, fontFamily: 'Century Gothic', fontSize: 20, fontWeight: 'bold'};
+const textFormat = {left: 50, top: 720, fontFamily: 'Century Gothic', fontSize: 22, lineHeight: 1.5, fontWeight: 'bold'};
 
 const postWidth = 906;
 const postHeight = 510;
@@ -16,7 +16,7 @@ window.onload = () => {
 	canvas.width *= 2;
 	canvas.height *= 2;
 	canvas.setZoom(1);
-	canvas.bodyText = new fabric.Text('Sample text', textFormat);
+	canvas.bodyText = new fabric.IText('Sample text', textFormat);
 	canvas.bodyText.setColor('#3f3f3f')
 	fabric.Image.fromURL('img/template.png', (oImg) => {
 		canvas.add(oImg);
@@ -41,8 +41,23 @@ function onPersonChange(val){
 
 function onTextChange(text){
 	if(canvas){
+		const regex = /\B#\w+/g;
 		canvas.remove(canvas.bodyText);
-		canvas.bodyText = new fabric.Text(text, textFormat);
+		var lines = text.split('\n');
+		var styles = {};
+		for(var i=0; i<lines.length; i++){
+			var matches = lines[i].match(regex);
+			if(!matches) matches = [];
+			styles[i] = {};
+			for(var m=0; m<matches.length; m++){
+				var l = lines[i].indexOf(matches[m]);
+				for(var letter=0; letter<matches[m].length; letter++){
+					styles[i][l+letter] = {fill: 'blue'}
+				}
+			}
+		}
+		console.log({...textFormat, styles});
+		canvas.bodyText = new fabric.IText(text, {...textFormat, styles});
 		canvas.bodyText.setColor('#3f3f3f')
 		canvas.add(canvas.bodyText);
 	}
