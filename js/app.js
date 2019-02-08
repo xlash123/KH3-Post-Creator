@@ -1,4 +1,4 @@
-const textFormat = {left: 50, top: 720, fontFamily: 'Century Gothic', fontSize: 32, fontWeight: 'bold'};
+const textFormat = {left: 50, top: 720, fontFamily: 'Century Gothic', fontSize: 20, fontWeight: 'bold'};
 
 const postWidth = 906;
 const postHeight = 510;
@@ -6,16 +6,22 @@ const postHeight = 510;
 var canvas;
 
 window.onload = () => {
-	// create a wrapper around native canvas element (with id="c")
+	var canvasNorm = document.getElementById('canvas');
+	canvasNorm.width = 453;
+	canvasNorm.height = 506;
 	canvas = new fabric.StaticCanvas('canvas');
-	// canvas.setZoom(0.5);
+	canvas.setZoom(0.5);
+	canvasNorm.width *= 2;
+	canvasNorm.height *= 2;
+	canvas.width *= 2;
+	canvas.height *= 2;
+	canvas.setZoom(1);
 	canvas.bodyText = new fabric.Text('Sample text', textFormat);
 	canvas.bodyText.setColor('#3f3f3f')
 	fabric.Image.fromURL('img/template.png', (oImg) => {
 		canvas.add(oImg);
 		canvas.add(canvas.bodyText);
 	})
-
 	onPersonChange('unknown')
 }
 
@@ -73,9 +79,7 @@ function readURL(input)
 
 function onSave(){
 	if(canvas){
-		var canvasJs = document.getElementById("canvas");
-		
-		Canvas2Image.saveAsPNG(canvasJs, canvasJs.width, canvasJs.height, 'kh3 post');
-
+		var canvasNorm = document.getElementById('canvas');
+		Canvas2Image.saveAsPNG(canvasNorm, canvasNorm.width, canvasNorm.height, 'kh3 post');
 	}
 }
