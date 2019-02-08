@@ -1,20 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<section class="section">
-			<div class="container">
-				<h1 class="title">KH3 Post Creator</h1>
-				<canvas id="canvas" width="400" height="400" style="border:1px solid #000000"/>
-			</div>
-		</section>
-	</body>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<title>KH3 Post Creator</title>
-		<link rel="stylesheet" href="css/bulma.min.css">
 		<script src="js/fabric.min.js"></script>
 		<script src="js/canvas2image.js"></script>
 		<script src="js/app.js?0.0.1"></script>
+		<style type="text/css">
+			body, html {
+			    height: 100%;
+			    width: 100%;
+			    padding: 0;
+			    margin: 0;
+			}
+			canvas {
+				display: block;
+				margin: 0 auto;
+			}
+			#container{
+				margin: auto;
+			}
+		</style>
 	</head>
+	<body>
+		<h1 style="text-align: center;" class="title">KH3 Post Creator</h1>
+		<div class="container">
+			<canvas id="canvas" width="906" height="1012" style="border:1px solid #000000"/>
+		</div>
+		<div style="display: block; margin: auto; margin-bottom: 10px; text-align: center;">
+			<div>
+				<p>Select person</p>
+				<select onPersonChange(this.value)'>
+					<option value='unknown'>Unknown</option>
+					<option value='sora'>Sora</option>
+					<option value='donald'>Donald</option>
+					<option value='goofy'>Goofy</option>
+					<option value='mickey'>Mickey</option>
+					<option value='ienzo'>Ienzo</option>
+					<option value='pence'>Pence</option>
+				</select>
+			</div>
+			<div>
+				<p>Enter body text</p>
+				<textarea onkeyup="onTextChange(this.value)" onblur="onTextChange(this.value)" rows="4" cols="50">Sample text</textarea>
+			</div>
+			<div>
+				<p>Upload post image</p>
+				<input id="postimg" type="file" accept="image/png, image/jpeg" onchange="readURL(this)"/>
+			</div>
+			<div style="margin-top: 20px">
+				<button onclick="onSave()">Save full resolution</button>
+			</div>
+		</div>
+		
+	</body>
 </html>
