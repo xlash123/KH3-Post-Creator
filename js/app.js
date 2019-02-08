@@ -74,7 +74,6 @@ function readURL(input)
 function onSave(){
 	if(canvas){
 		var canvasJs = document.getElementById("canvas");
-		console.log(canvasJs.toDataURL())
 		
 		Canvas2Image.saveAsPNG(canvasJs, canvasJs.width, canvasJs.height, 'kh3 post');
 
