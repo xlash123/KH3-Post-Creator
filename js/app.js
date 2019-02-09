@@ -4,7 +4,7 @@ function mobilecheck() {
   return check;
 };
 
-	const textFormat = {left: 50, top: 720, fontFamily: 'KH3 Post', fontSize: 24, lineHeight: 1.5, fontWeight: 'bold'};
+	const textFormat = {left: 50, top: 720, fontFamily: 'KH3 Post', fontSize: 27, lineHeight: 1.5, fontWeight: 'bold'};
 
 const postWidth = 906;
 const postHeight = 510;
